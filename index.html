@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Libraries  in Bootsrap and Jquery Startss -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<!-- Datatable pagination links starts -->
+  <link href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet">
+ 
+ 
+  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<!-- Datatable pagination links ends -->
+
+<!-- Alert messages links starts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <!-- Alert messages links ends -->
+ <!-- Libraries in bootstrap and jquery ends  -->
+<link href="style.css" rel="stylesheet">
+ <script src="script.js" defer></script>
+   
+   
+</head>
+<body>
+
+    <!-- Header Stucture Starts  -->
+
+    <div class="header" align="center">
+        <h1> Parking lot System</h1>
+    </div>
+
+    <!-- Header Stucture Ends -->
+
+
+
+    <div class="col-sm-12">
+        <div class="conatiner">
+            <div class="row">
+                <!-- Add Vehicle Structure Starts -->
+                <div class="col-sm-4" style="background-color: rgb(192, 185, 185);">
+                    
+                   
+                    <div class="card">
+                        <div align="center">
+                            <h4 style="color: violet;" id="addedit"><b><u>Add New Vehicle</u></b></h4>
+                        </div>
+
+           <br>
+                        <div class="form-group">
+                        <label>Name :</label>
+                            <input type="text" placeholder="Enter Name" id="name" class="form-control" autocomplete="off">
+                            <label style="color: red;display: none;" id="lblerr1">Name is  required</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Vehicle Name:</label>
+            
+                            <input type="text" placeholder="Enter vehicle name" id="vehicleName" autocomplete="off" class="form-control">
+                            <label style="color: red;display: none;" id="lblerr2">Vehicle Name is required</label>
+                        </div>
+                        <br>
+            
+                        <div class="form-group">
+                            <label>Vehicle Number (Eg:- TN-05 AL 1234):</label>
+            
+                            <input type="text" placeholder="Enter Vehicle Number" pattern="^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$" title="Format" name="vehicleNumber" autocomplete="off" id="vehicleNumber" class="form-control">
+                            <label style="color: red;display: none;" id="lblerr3">Vehicle Number is required</label>
+            
+                        </div>
+                        <br>
+            
+                        <div class="form-group">
+                            <label>Entry Date:</label>
+                            <input type="text" placeholder="DD/MM/yyyy" autocomplete="off" id="entryDate" class="form-control">
+                            <label style="color: red;display: none;" id="lblerr4">Entry Date is required</label>
+            
+                           <script>
+                                $(function() {
+                                  $( "#entryDate" ).datepicker();
+                                });
+                                </script>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Exit Date:</label>
+                            <input type="text" placeholder="DD/MM/yyyy" autocomplete="off" id="exitDate" class="form-control">
+
+                           <script>
+                                $(function() {
+                                  $( "#exitDate" ).datepicker();
+                                  
+                                });
+                                </script>
+                        </div>
+                        <br>
+                            <div align="center" style="width: 100%;">
+                                <button class="btn btn-success" onclick="addRow();" disabled id="btnSave" style="background-color: yellow;color:black;border: none;"  >Save</button>
+                                <button class="btn btn-primary" onclick="updateRow();" id="btnUpdate" style="display: none;">Update</button>
+                            </div>
+                       
+                    
+                    
+                
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                </div>
+            <!-- Add Vehicle Structure  Ends  -->
+
+
+            <!-- List of  Vehicle in Table Structure Starts -->
+                <div class="col-sm-8">
+                    <div class="cards" >
+                        <div align="center">
+                            <h4 style="color: violet;"><b><u>List Of Vehicles in Parking</u></b></h4>
+                        </div>
+
+           <br>
+                                    <table class="table table-responsive table-striped"   id="myTables" >
+                            
+                    
+                             
+                    
+                                    </table>
+                                
+                        
+                          
+                    </div>
+                </div>
+                <!-- List of  Vehicle in Table Structure Ends -->
+            </div>
+        </div>
+    </div>
+  
+
+            
+       
+
+
+<br>
+<br>
+
+<!-- Enable Pagination using script starts -->
+<script>
+    $(document).ready(function() {
+$('#myTables').DataTable({
+    "bSearchable":true
+});
+} );
+</script>
+
+<!-- Enable Pagination using script Ends -->
+    </div>
+
+    <!-- Footer structure Starts Here -->
+    <div id="footer" align="center">
+        <h6>&copy; Copyright @2022 , <a onclick="reload();" style="color: blue;text-decoration: underline;cursor: pointer;">Go to Website</a> Designed and 
+        developed by Arshath Ibrahim </h6>
+    </div>
+<script>
+    function reload(){
+        window.scroll({
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+       });
+    }
+</script>
+    <!-- Footer structure Ends Here -->
+</body>
+</html>
